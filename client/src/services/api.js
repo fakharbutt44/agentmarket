@@ -1,6 +1,15 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: '/api' });
+//const api = axios.create({ baseURL: '/api' });
+
+
+// CHANGE TO:
+const api = axios.create({ 
+  baseURL: process.env.REACT_APP_SERVER_URL 
+    ? `${process.env.REACT_APP_SERVER_URL}/api` 
+    : '/api' 
+});
+
 
 // Attach JWT on every request
 api.interceptors.request.use((config) => {
